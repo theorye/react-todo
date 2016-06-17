@@ -17,10 +17,14 @@ module.exports = {
     })
   ],
   output: {
-    path: __dirname + "/public/",
+    path: path.resolve(__dirname,  "public"),
     filename: 'bundle.js'
   },
   resolve: {
+    modulesDirectories: [
+      "node_modules",
+      "components"
+    ],
     alias: {
     },
     extensions: ['', '.js', '.jsx']
