@@ -62,12 +62,12 @@ describe('TodoAPI', ()=> {
     let todos = [
       {
         id: 1,
-        text: 'some text here',
+        text: 'text here',
         completed: true
       },
       {
         id: 2,
-        text: 'some text here2',
+        text: 'Some text here2',
         completed: false
       },
       {
@@ -87,6 +87,24 @@ describe('TodoAPI', ()=> {
       let filteredTodos = TodoAPI.filterTodos(todos, false, '');
 
       expect(filteredTodos.length).toBe(1);
+    });
+
+    it('should sort by completed status', () => {
+      let filteredTodos = TodoAPI.filterTodos(todos, true, '');
+      expect(filteredTodos[0].id).toBe(2);
+      expect(filteredTodos[0].completed).toBe(false);
+    });
+
+    it('should filter todos by searchText', () => {
+      let filteredTodos = TodoAPI.filterTodos(todos, true, 'some');
+
+      expect(filteredTodos.length).toBe(2);
+    });
+
+    it('should return all todos if searchText is empty', () => {
+      let filteredTodos = TodoAPI.filterTodos(todos, true, '');
+
+      expect(filteredTodos.length).toBe(3);
     });
 
   });
