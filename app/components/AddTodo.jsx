@@ -4,12 +4,12 @@ const AddTodo = React.createClass({
   handleSubmit: function(e) {
     e.preventDefault();
     let newTodo = this.refs.todoText.value;
-    
+
     if(newTodo.length >0) {
       this.props.onAddTodo(newTodo);
-    } else {
-      this.refs.todoText.focus();
-    }
+    } 
+    this.refs.todoText.focus();
+    this.refs.todoText.value = "";
   },
   render: function() {
     return (
