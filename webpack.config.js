@@ -25,7 +25,8 @@ module.exports = {
       "node_modules",
       "components",
       "api",
-      "actions"
+      "actions",
+      "reducers"
     ],
     alias: {
     },
