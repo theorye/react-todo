@@ -26,7 +26,8 @@ module.exports = {
       "components",
       "api",
       "actions",
-      "reducers"
+      "reducers",
+      "store"
     ],
     alias: {
     },
