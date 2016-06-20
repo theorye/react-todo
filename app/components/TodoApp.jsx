@@ -1,26 +1,24 @@
-import React from 'react';
-import uuid from 'node-uuid';
-import moment from 'moment';
+var React = require('react');
+var uuid = require('node-uuid');
+var moment = require('moment');
 
-import TodoList from 'TodoList';
-import AddTodo from 'AddTodo';
-import TodoSearch from 'TodoSearch';
+import TodoList from 'TodoList'
+var AddTodo = require('AddTodo');
+var TodoSearch = require('TodoSearch');
+var TodoAPI = require('TodoAPI');
 
-import TodoAPI from 'TodoAPI';
-
-const TodoApp = React.createClass({
-  // Let's us set up our initial States
-  getInitialState: function() {
+var TodoApp = React.createClass({
+  getInitialState: function () {
     return {
       showCompleted: false,
       searchText: '',
       todos: TodoAPI.getTodos()
     };
   },
-  componentDidUpdate: function() {
+  componentDidUpdate: function () {
     TodoAPI.setTodos(this.state.todos);
   },
-  handleAddTodo: function(text) {
+  handleAddTodo: function (text) {
     this.setState({
       todos: [
         ...this.state.todos,
@@ -32,7 +30,7 @@ const TodoApp = React.createClass({
           completedAt: undefined
         }
       ]
-    })
+    });
   },
   handleSearch: function (showCompleted, searchText) {
     this.setState({
@@ -40,14 +38,14 @@ const TodoApp = React.createClass({
       searchText: searchText.toLowerCase()
     });
   },
-  render: function() {
-    const {todos, showCompleted, searchText} = this.state;
-
-    let filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
+  render: function () {
+    var {todos, showCompleted, searchText} = this.state;
+    var filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
 
     return (
       <div>
         <h1 className="page-title">Todo App</h1>
+
         <div className="row">
           <div className="column small-centered small-11 medium-6 large-5">
             <div className="container">
@@ -58,8 +56,8 @@ const TodoApp = React.createClass({
           </div>
         </div>
       </div>
-    );
+    )
   }
 });
 
-export default TodoApp;
+module.exports = TodoApp;

@@ -1,28 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import TestUtils from "react-addons-test-utils";
-import expect from 'expect';
-import $ from 'jquery';
+var React = require('react');
+var ReactDOM = require('react-dom');
+var TestUtils = require('react-addons-test-utils');
+var expect = require('expect');
+var $ = require('jquery');
 
-// grabs raw TODO component
-import {Todo} from 'Todo';
+var {Todo} = require('Todo');
 
-describe("Todo", ()=> {
+describe('Todo', () => {
   it('should exist', () => {
     expect(Todo).toExist();
   });
 
-  it('should dispatch Toggle_TODO action on click', () => {
-    let todoData = {
+  it('should dispatch TOGGLE_TODO action on click', () => {
+    var todoData = {
       id: 199,
-      text: 'Test text',
+      text: 'Write todo.test.jsx test',
       completed: true
     };
-
-    let spy = expect.createSpy();
-    let todo = TestUtils.renderIntoDocument(<Todo {...todoData} dispatch={spy}/>);
-
-    var $el= $(ReactDOM.findDOMNode(todo));
+    var spy = expect.createSpy();
+    var todo = TestUtils.renderIntoDocument(<Todo {...todoData} dispatch={spy}/>);
+    var $el = $(ReactDOM.findDOMNode(todo));
 
     TestUtils.Simulate.click($el[0]);
 
@@ -31,5 +28,4 @@ describe("Todo", ()=> {
       id: todoData.id
     });
   });
-
 });

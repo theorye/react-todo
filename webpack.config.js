@@ -1,5 +1,5 @@
-const webpack = require('webpack');
-const path = require('path');
+var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
   entry: [
@@ -17,19 +17,21 @@ module.exports = {
     })
   ],
   output: {
-    path: path.resolve(__dirname,  "public"),
-    filename: 'bundle.js'
+    path: __dirname,
+    filename: './public/bundle.js'
   },
   resolve: {
+    root: __dirname,
     modulesDirectories: [
-      "node_modules",
-      "components",
-      "api",
-      "actions",
-      "reducers",
-      "store"
+      'node_modules',
+      './app/components',
+      './app/api'
     ],
     alias: {
+      applicationStyles: 'app/styles/app.scss',
+      actions: 'app/actions/actions.jsx',
+      reducers: 'app/reducers/reducers.jsx',
+      configureStore: 'app/store/configureStore.jsx'
     },
     extensions: ['', '.js', '.jsx']
   },
@@ -42,10 +44,6 @@ module.exports = {
         },
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/
-      },
-      {
-        test: /\.scss$/,
-        loaders: ["style", "css", "sass"]
       }
     ]
   },
@@ -54,5 +52,5 @@ module.exports = {
       path.resolve(__dirname, './node_modules/foundation-sites/scss')
     ]
   },
-  devtool: 'cheap-module-eval-source-map' // Automatically create source maps
+  devtool: 'cheap-module-eval-source-map'
 };

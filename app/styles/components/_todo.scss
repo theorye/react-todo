@@ -18,13 +18,13 @@
   }
 }
 
-.todo_subtext {
+.todo__subtext {
   color: #999;
 }
 
 .todo-completed {
-  p, .todo_subtext {
-    color: light-color;
+  p, .todo-subtext {
+    color: $light-color;
     text-decoration: line-through;
   }
 }
