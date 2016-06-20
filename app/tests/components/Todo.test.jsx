@@ -4,15 +4,15 @@ import TestUtils from "react-addons-test-utils";
 import expect from 'expect';
 import $ from 'jquery';
 
-
-import Todo from 'Todo';
+// grabs raw TODO component
+import {Todo} from 'Todo';
 
 describe("Todo", ()=> {
   it('should exist', () => {
     expect(Todo).toExist();
   });
 
-  it('should call onToggle prop with id on click', () => {
+  it('should dispatch Toggle_TODO action on click', () => {
     let todoData = {
       id: 199,
       text: 'Test text',
@@ -20,13 +20,16 @@ describe("Todo", ()=> {
     };
 
     let spy = expect.createSpy();
-    let todo = TestUtils.renderIntoDocument(<Todo {...todoData} onToggle={spy}/>);
+    let todo = TestUtils.renderIntoDocument(<Todo {...todoData} dispatch={spy}/>);
 
     var $el= $(ReactDOM.findDOMNode(todo));
 
     TestUtils.Simulate.click($el[0]);
 
-    expect(spy).toHaveBeenCalledWith(199);
+    expect(spy).toHaveBeenCalledWith({
+      type: 'TOGGLE_TODO',
+      id: todoData.id
+    });
   });
 
 });
